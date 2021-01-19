@@ -26,7 +26,7 @@ namespace GameLogi_MAS
             int opponent_id = neighbors_id[random.Next(neighbors_id.Count - 1)];
             Agent opponent = agents[opponent_id];
             if (opponent.strategy != strategy && 
-                (double)random.Next(1000) / 1000.0 < 1.0 / (1.0 + Math.Exp(point - opponent.point) / 0.1)) {
+                (double)random.Next(100000) / 100000.0 < (1.0 / (1.0 + Math.Exp(point - opponent.point)) / 0.1)) {
                 next_strategy = opponent.strategy;
             }
         }

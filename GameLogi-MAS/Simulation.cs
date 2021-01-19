@@ -134,14 +134,14 @@ namespace GameLogi_MAS
 
                 //収束判定
                 if (i >= 100) {
-                    fc_hist.CopyTo(0, hist, fc_hist.Count - 100, 100);
+                    fc_hist.CopyTo(fc_hist.Count - 100, hist, 0, 100);
                 }
                 if ((i >= 100 && Math.Abs(hist.Average() - fc) / fc < 0.001) || i == tmax - 1) {
                     //100回以上戦略更新を繰り返し、過去100回のゲームで得られた協調率の平均値と次のゲームでの協調率の差が十分小さくなったら計算を打ち切る
                     fc_converged = hist.Average();//過去100回分のゲームで得られた協調率の平均値を取る
                     break;
                 }
-                else if (fc >= 0 && fc <= 1.0) {
+                else if (fc == 0 || fc == 1.0) {
                     //囚人のジレンマゲームでは全員C戦略 or 全員D戦略の状態に収束しやすいため、そうなったらすぐに計算を打ち切る
                     fc_converged = fc;
                     break;
